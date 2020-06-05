@@ -1,7 +1,10 @@
 import os, random
+from hashlib import md5
 
-keys=['this', 'was', 'the', 'correct', 'key', 'but', 'the', 'correct', 'order', 'can', 'be', 'different',
-      'so', 'better', 'try', 'a', 'bruteforce']
+answer= "you are doing great but take care of the order"
+hashval= md5(answer.encode()).hexdigest()
+print(hashval)
+keys=answer.split()
 
 selected_folders=[]
 for i in range(len(keys)):

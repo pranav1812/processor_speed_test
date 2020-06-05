@@ -2,7 +2,9 @@ import os, hashlib, time
 from itertools import permutations
 
 startTime=time.time()
-toMatch='611d6663e938213f9643144650180a8d'
+answer= "you are doing great but take care of the order"
+toMatch= hashlib.md5(answer.encode()).hexdigest()
+
 
 toCheck="here's one key :"
 
@@ -20,20 +22,20 @@ for i in range(200):
     os.chdir('..')
 
 
-print(len(found))
+print(found)
 matched= False
 count =0
 for perm in permutations(found):
     permStr= ' '.join(perm)
     permHash= hashlib.md5(permStr.encode()).hexdigest()
 
-    if toMatch==permHash:
+    if toMatch==permHash or permStr=="":
         print('matched answer: '+permStr)
         matched= True
         break
     else:
         count+=1
-        print(count,'perms checked')
+        # print(count,'perms checked')
 
 
 if not matched:
